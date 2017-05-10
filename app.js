@@ -46,7 +46,17 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  if (isAPI(req)){
+    res.json({ok:false, error: err.message});
+    return;
+  }
   res.render('error');
 });
+
+// función para averiguar si se está accediendo desde un servicio o 
+// desde API
+function isAPI(req) {
+  return req.originalUrl.indexOf('/api') === 0;
+}
 
 module.exports = app;
