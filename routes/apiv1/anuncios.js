@@ -26,15 +26,43 @@ router.post('/', (req, res, next) => {
 
 // Se hace un metodo para recuperar una lista de anuncios
 router.get('/', (req, res, next) => {
+    // Se obtienen los campos de filtro
+    const nombre = req.query.nombre;
+    const venta  = req.query.venta;
+    const precio = req.query.precio;
+    const tags   = req.query.tags;
+    const filter = {}; // Filtro vacio
+
+    // Se informa el filtro segun los campos informados
+    if (nombre) {
+        filter.nombre = nombre;
+    }
+    if (venta) {
+        filter.venta = venta;
+    }    
+    if (precio) {
+        filter.precio = precio;
+    }
+    if (tags) {
+        filter.tags = tags;
+    }
+
+    // Se obtienen y verifican los campos de parametros de la busqueda
+    const fields = null;
+    const limit = parseInt(req.query.limit);
+    const skip  = parseInt(req.query.skip);
+    const sort  = req.query.sort;
+
     // Se recuperan todos los registros 
-    Anuncio.find().exec( (err, list) => {
+    //Anuncio.find().exec( (err, list) => { // código para hacerlo por ruta en lugar de query
+    Anuncio.list(filter, limit, skip, fields, sort, (err, anuncios) => {
         // Se valida si existe un error para no continuar
         if (err) {
             return next(err);
         }
 
         // Si no hubo error se devuelve la lista recuperada
-        res.json({ok: true, list: list});
+        res.json({success: true, result: anuncios});
     });
 });
 
