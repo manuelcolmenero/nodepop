@@ -3,47 +3,33 @@
 // ------------------ Area: Declaraciones 
 // ------- require y asignaciones
 
-//require('./lib/connectMongoose'); // Se llama a BBDD y se conecta
-const async = require('async');
-const leerArchivo = require('./installDB/leerArchivo');
+require('./lib/connectMongoose'); // Se llama a BBDD y se conecta
 
-// ------- Borrado 
-
-// ------- Regenerar tabla 
-
-// ------- Area: Proceso
-// ------- Borrado 
-
-
-// ------- Regenerar tabla 
-
+const cargaAnuncios = require('./installDB/cargaAnuncios'); // Se llama al módulo que carga anuncios
+const cargaUsuarios = require('./installDB/cargaUsuarios'); // Se llama al módulo que carga usuarios
 
 // ------- Proceso
-leerArchivo ('initAnuncios.json', (err, datosJSON) => {
+console.log('Comienza la instalación');
+
+cargaAnuncios( (err, callback) => {
   if (err) {
-    console.log ('Error:', err);
-    return;
+    console.log('Error:', err);
+    process.exit(1);
   }
-  for (let indice = 0; indice < datosJSON.anuncios.length ; indice++) {
-        console.log('anuncio' + indice, datosJSON.anuncios[indice].nombre);
-        console.log('anuncio' + indice, datosJSON.anuncios[indice].venta);
-        console.log('anuncio' + indice, datosJSON.anuncios[indice].precio);
-        console.log('anuncio' + indice, datosJSON.anuncios[indice].foto);
-        console.log('anuncio' + indice, datosJSON.anuncios[indice].tags);
-    }
+  console.log('Carga anuncios terminada con exito.');
 });
 
-leerArchivo ('initUsuarios.json', (err, datosJSON) => {
+cargaUsuarios( (err, callback) => {
   if (err) {
-    console.log ('Error:', err);
-    return;
+    console.log('Error:', err);
+    process.exit(1);
   }
-  for (let indice = 0; indice < datosJSON.usuarios.length ; indice++) {
-        console.log('usuario' + indice, datosJSON.usuarios[indice].nombre);
-        console.log('usuario' + indice, datosJSON.usuarios[indice].email);
-        console.log('usuario' + indice, datosJSON.usuarios[indice].clave);
-
-    }
+  console.log('Carga usuarios terminada con exito.');
 });
+
+console.log('Instalación terminda');
+
+
+
 
 
