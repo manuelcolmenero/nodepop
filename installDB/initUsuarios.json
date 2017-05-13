@@ -1,0 +1,14 @@
+{
+"usuarios": [
+  {
+    "nombre": "Son Goku", 
+    "email": "kamekameah@gmail.com",
+    "clave": "Bola4"
+  },
+  {
+    "nombre": "mcLasha", 
+    "email": "admin@lashainc.com",
+    "clave": "Boot5"
+    }
+  ]
+}
