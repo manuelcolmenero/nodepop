@@ -13,6 +13,27 @@
     "precio": 50.00,
     "foto": "iphone.png",
     "tags": [ "lifestyle", "mobile"]
+  },
+  {
+    "nombre": "Halcón Milenario", 
+    "venta": false,
+    "precio": 1500.00,
+    "foto": "falcon.png",
+    "tags": [ "motor"]
+  },
+  {
+    "nombre": "Bata Manta", 
+    "venta": true,
+    "precio": 25.00,
+    "foto": "bata.jpg",
+    "tags": [ "lifestyle"]
+  },
+  {
+    "nombre": "MPOW Thor", 
+    "venta": false,
+    "precio": 21.54,
+    "foto": "auricular.jpg",
+    "tags": [ "mobile"]
     }
   ]
 }
