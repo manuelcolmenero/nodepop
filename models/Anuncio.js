@@ -18,7 +18,17 @@ anuncioSchema.statics.list = function (filter, limit, skip, fields, sort, callba
 
     query.limit(limit);
     query.skip(skip);
-    query.select(fields); // Campos a filtrar { nombredecampo: 1, campoquenoquiero: 0 }
+    //query.select(fields); // Código para que el llamante filtre los campos 
+    // Se deja filtrado la consulta por los campos existentes de forma fija para
+    // que no pueda ser alterada
+    query.select({
+        nombre: 1,
+        venta: 1,
+        precio: 1,
+        foto: 1,
+        tags: 1,
+
+    })
     query.sort(sort);
     query.exec(callback);
 };
