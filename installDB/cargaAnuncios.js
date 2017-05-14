@@ -33,6 +33,8 @@ function cargaAnuncios(callback) {
       }
   });
 
+  callback(null);
+
 }
 
 // ------------- Area: Retorno -------------

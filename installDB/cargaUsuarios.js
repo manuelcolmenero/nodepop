@@ -33,6 +33,8 @@ function cargaUsuarios(callback) {
       }
   });
 
+    callback(null);
+
 }
 
 // ------------- Area: Retorno -------------
