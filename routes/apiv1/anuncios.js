@@ -112,7 +112,6 @@ router.get('/', basicAuth, (req, res, next) => {
         for (let indice = 0; indice < anuncios.length ; indice++) {
             anuncios[indice].foto = path.join('/public/images/', anuncios[indice].foto);
         }
-        console.log(anuncios);
 
         // Si no hubo error se devuelve la lista recuperada
         res.json({success: true, result: anuncios});
