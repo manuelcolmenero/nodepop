@@ -5,11 +5,24 @@ const mongoose = require('mongoose');
 
 // Se crea el esquema del registro
 const anuncioSchema = mongoose.Schema({
-    nombre: String,
-    venta: Boolean,
-    precio: Number,
+    nombre: {
+        type: String,
+        index: 'text',
+        unique: true
+    },
+    venta: {
+        type: Boolean,
+        index: true
+    },
+    precio: {
+        type: Number,
+        index: true
+    },
     foto: String,
-    tags: [String]
+    tags: {
+        type: [String],
+        index: true
+    }
 });
 
 // Se crea un método estático
