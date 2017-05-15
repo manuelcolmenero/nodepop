@@ -98,7 +98,7 @@ router.get('/', basicAuth, (req, res, next) => {
 
     // Se obtienen y verifican los campos de parametros de la busqueda
     const fields = req.query.fields; // Se recuperan los filtros solicitados por cliente 
-    // Pero se ignoran por filtrado en el módulo
+    // Pero se ignoran por filtrado en el modelo
     const limit = parseInt(req.query.limit);
     const skip = parseInt(req.query.skip);
     const sort = req.query.sort;
