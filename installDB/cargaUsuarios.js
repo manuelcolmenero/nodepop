@@ -1,6 +1,6 @@
 "use strict"
 const leerArchivo     = require('./leerArchivo');     // Se importa la rutina de leerFicheros
-const paqueteUsuarios = require('./paqueteUsuarios'); // Se importa las rutinas de BBDD de Usuarios
+const paqueteUsuarios = require('../lib/paqueteUsuarios'); // Se importa las rutinas de BBDD de Usuarios
 
 function cargaUsuarios(callback) {
   paqueteUsuarios.recuperarUsuarios( (err, datosJSON) => {

@@ -2,12 +2,15 @@
 
 // ------------------ Area: Declaraciones 
 // ------- require y asignaciones
-const express = require('express');
-const router = express.Router();
-const mongoose = require('mongoose');
-const Anuncio = mongoose.model('Anuncio');
+const express = require('express');               // Módulo de express
+const router = express.Router();                  // Creación de objeto enrutador 
 
-const path = require('path');
+const mongoose = require('mongoose');             // Módulo de mongoose
+const Anuncio = mongoose.model('Anuncio');        // Creación de estructura Anuncios
+
+const basicAuth = require('../../lib/basicAuth'); // Módulo de autentificación
+
+const path = require('path');                     // Módulo de trabajo con rutas
 
 // ------------------ Area: Metodos
 // Se hace un metodo de crear anuncios
@@ -27,7 +30,7 @@ router.post('/', (req, res, next) => {
 });
 
 // Se hace un metodo para recuperar una lista de anuncios
-router.get('/', (req, res, next) => {
+router.get('/', basicAuth, (req, res, next) => {
     // Se obtienen los campos de filtro
     const nombre = req.query.nombre;
     const venta  = req.query.venta;
