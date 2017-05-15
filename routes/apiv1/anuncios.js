@@ -17,14 +17,14 @@ const path = require('path');                     // Módulo de trabajo con ruta
 router.post('/', (req, res, next) => {
     // Se crea un modelo de anuncios en base a lo recibido por body
     let anuncio = new Anuncio(req.body);
-    
+
     // Se guarda en la BBDD el modelo
-    anuncio.save( (err, anuncioGuardado) => {
+    anuncio.save((err, anuncioGuardado) => {
         if (err) {
             return next(err);
         }
         // Se devuelve el registro indicando que ha ido correctamente
-        res.json({ok:true, anuncio:anuncioGuardado});
+        res.json({ ok: true, anuncio: anuncioGuardado });
     });
 
 });
@@ -33,9 +33,9 @@ router.post('/', (req, res, next) => {
 router.get('/', basicAuth, (req, res, next) => {
     // Se obtienen los campos de filtro
     const nombre = req.query.nombre;
-    const venta  = req.query.venta;
+    const venta = req.query.venta;
     const precio = req.query.precio;
-    const tags   = req.query.tags;
+    const tags = req.query.tags;
     const filter = {}; // Filtro vacio
 
     // Se informa el filtro segun los campos informados
@@ -45,7 +45,7 @@ router.get('/', basicAuth, (req, res, next) => {
     if (nombre) {
         filter.nombre = new RegExp('^' + nombre, "i"); // Se pone i para que sea case-insensitive
     }
-    
+
     // Se pregunta si se ha informado el campo venta.
     // En caso de estar informado se valida si es true, false o búsquerda (false)
     if (venta && (venta === 'true' || venta === 'false' || venta.toLowerCase() == 'búsqueda')) {
@@ -62,24 +62,25 @@ router.get('/', basicAuth, (req, res, next) => {
     if (precio) {
         // El rango viene dividido por un signo "-" así que se convierte en un array de 2 registros
         let rangoPrecio = precio.toString().split("-")
-        
+
         // Si los dos campos vienen informados
-        if (rangoPrecio[0] && rangoPrecio[1]){
-            filter.precio = { $gte: rangoPrecio[0], 
-                              $lte: rangoPrecio[1]
-                            };
+        if (rangoPrecio[0] && rangoPrecio[1]) {
+            filter.precio = {
+                $gte: rangoPrecio[0],
+                $lte: rangoPrecio[1]
+            };
         } else {
             // Si el campo viene informado con el signo "-" por detras del número es que
             // se ha enviado un filtro Desde
             if (isNaN(precio)) {
-                if (rangoPrecio[0]){
+                if (rangoPrecio[0]) {
                     filter.precio = { $gte: rangoPrecio[0] };
-                } 
-            // Si era un numero y tenia signo es que se ha informado el filtro Hasta
-            } else if (rangoPrecio[1]){
+                }
+                // Si era un numero y tenia signo es que se ha informado el filtro Hasta
+            } else if (rangoPrecio[1]) {
                 filter.precio = { $lte: rangoPrecio[1] };
             } else {
-            // Si llega a este punto se está filtrando por un precio determinado
+                // Si llega a este punto se está filtrando por un precio determinado
                 filter.precio = precio;
             }
         }
@@ -90,17 +91,17 @@ router.get('/', basicAuth, (req, res, next) => {
     if (tags) {
         // Los diferentes tags vienen divididos por un signo "-" así que se convierte en un array
         let arrayTag = tags.toString().split("-")
-        
+
         // Como puede que vengan más de un registro se realiza la busqueda recuperando todos
         filter.tags = { $in: arrayTag };
     }
 
     // Se obtienen y verifican los campos de parametros de la busqueda
     const fields = req.query.fields; // Se recuperan los filtros solicitados por cliente 
-                                     // Pero se ignoran por filtrado en el módulo
+    // Pero se ignoran por filtrado en el módulo
     const limit = parseInt(req.query.limit);
-    const skip  = parseInt(req.query.skip);
-    const sort  = req.query.sort;
+    const skip = parseInt(req.query.skip);
+    const sort = req.query.sort;
 
     // Se recuperan todos los registros 
     //Anuncio.find().exec( (err, list) => { // código para hacerlo por ruta en lugar de query
@@ -109,12 +110,12 @@ router.get('/', basicAuth, (req, res, next) => {
         if (err) {
             return next(err);
         }
-        for (let indice = 0; indice < anuncios.length ; indice++) {
+        for (let indice = 0; indice < anuncios.length; indice++) {
             anuncios[indice].foto = path.join('/public/images/', anuncios[indice].foto);
         }
 
         // Si no hubo error se devuelve la lista recuperada
-        res.json({success: true, result: anuncios});
+        res.json({ success: true, result: anuncios });
     });
 });
 
@@ -122,12 +123,12 @@ router.get('/', basicAuth, (req, res, next) => {
 router.put('/:id', (req, res, next) => {
     let id = req.params.id;
 
-    Anuncio.update({_id: id}, req.body, (err, anuncio) => {
+    Anuncio.update({ _id: id }, req.body, (err, anuncio) => {
         if (err) {
             return next(err);
         }
         // Se devuelve el registro indicando que ha ido correctamente
-        res.json({ok:true, anuncio:anuncio});
+        res.json({ ok: true, anuncio: anuncio });
     });
 });
 
@@ -135,12 +136,12 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
     let id = req.params.id;
 
-    Anuncio.remove({_id: id}, (err, anuncio) => {
+    Anuncio.remove({ _id: id }, (err, anuncio) => {
         if (err) {
             return next(err);
         }
         // Se devuelve el registro indicando que ha ido correctamente
-        res.json({ok:true, anuncio:anuncio});
+        res.json({ ok: true, anuncio: anuncio });
     });
 });
 
