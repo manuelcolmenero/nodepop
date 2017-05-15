@@ -5,7 +5,7 @@ const path = require('path');
 
 // ------- Funciones
 
-function leerArchivo(nombreFichero, callback) {
+async function leerArchivo(nombreFichero, callback) {
     const fichero = path.join('./installDB', nombreFichero);
     let datosJSON ={};
 

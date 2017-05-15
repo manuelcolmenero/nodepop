@@ -1,35 +1,26 @@
 "use strict";
 
 // ------------------ Area: Declaraciones 
-// ------- require y asignaciones
-
 require('./lib/connectMongoose'); // Se llama a BBDD y se conecta
 
-const cargaAnuncios = require('./installDB/cargaAnuncios'); // Se llama al módulo que carga anuncios
-const cargaUsuarios = require('./installDB/cargaUsuarios'); // Se llama al módulo que carga usuarios
+const cargaAnuncios = require('./installDB/cargaAnuncios'); // Se importa las rutinas de BBDD de Anuncios
+const cargaUsuarios = require('./installDB/cargaUsuarios'); // Se importa las rutinas de BBDD de Usuarios
 
-// ------- Proceso
-console.log('Comienza la instalación');
+// ------------- Area: Funciones  -------------
+async function main() {
 
-cargaAnuncios( (err, callback) => {
-  if (err) {
-    console.log('Error:', err);
-    process.exit(1);
-  }
-  console.log('Carga anuncios terminada con exito.');
-});
+  console.log('Empieza el proceso de instalación');
 
-cargaUsuarios( (err, callback) => {
-  if (err) {
-    console.log('Error:', err);
-    process.exit(1);
-  }
-  console.log('Carga usuarios terminada con exito.');
-});
+  await cargaAnuncios(); // Proceso de gestión de anuncios pre-cargados
+  await cargaUsuarios(); // Proceso de gestión de usuarios pre-cargados
 
-console.log('Instalación terminda');
+  console.log('Fin el proceso de instalación');
+  process.exit(0);
+}
 
-
-
-
+// ------------- Area: Proceso  -------------
+main().then(() => { })
+  .catch(err => {
+    console.log('Hubo un error:', err);
+  });
 
