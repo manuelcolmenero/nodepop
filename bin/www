@@ -15,8 +15,8 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-// Se incluye el cófigo para ejecutar en modo cluster
-const cluster = require('cluster'); 
+// Se incluye el código para ejecutar en modo cluster
+const cluster = require('cluster');
 
 // Somos el master?
 if (cluster.isMaster) {
@@ -24,10 +24,10 @@ if (cluster.isMaster) {
   const numCPUs = require('os').cpus().length;
 
   for (var i = 0; i < numCPUs; i++) {
-      cluster.fork();
+    cluster.fork();
   }
 } else {
-/**
+  /**
    * Create HTTP server.
    */
 

@@ -1,5 +1,6 @@
 "use strict"
 
+const sha256 = require('sha256');
 const mongoose = require('mongoose');
 const Usuario = require('../models/Usuario');
 const modelUsuario = mongoose.model('Usuario');
@@ -36,6 +37,8 @@ function borrarUsuarios(idBorrar) {
 function altaUsuarios(nuevoUsuario) {
   return new Promise((resolve, reject) => {
     let usuario = new modelUsuario(nuevoUsuario);
+
+    usuario.clave = sha256.x2(usuario.clave);
 
     usuario.save(nuevoUsuario, (err, usuarioGuardado) => {
       if (err) {
