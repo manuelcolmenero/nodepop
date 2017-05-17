@@ -1,5 +1,5 @@
 # **Nodepop**
----
+--
 ### **Práctica JS/Node.js/MongoDB**
 ### **KeepCoding Startup Engineering Master V (2017)**
 
@@ -14,9 +14,9 @@ Los usuarios no pueden subir anuncios. Sólo pueden consultar los anuncios preca
 
 ### Prerrequisitos API
 Para poder trabajar con la API se necesitan tener el siguiente software instalado.
-⋅⋅* Node >= 4.0 
-⋅⋅* MongoDB 
-⋅⋅* Git 
+- Node >= 4.0 
+- MongoDB 
+- Git 
 
 ### Instalación API
 Una vez se posean el entorno preparado se procederá a descargar el API desde gitHub e instalar los módulos de dependencias.
@@ -29,16 +29,16 @@ $ npm install
 ```
 
 Módulos que se instalaran:
-⋅⋅* basic-auth
-⋅⋅* body-parser
-⋅⋅* cookie-parser
-⋅⋅* debug
-⋅⋅* ejs
-⋅⋅* express
-⋅⋅* mongoose
-⋅⋅* morgan
-⋅⋅* serve-favicon
-⋅⋅* sha256
+- basic-auth
+- body-parser
+- cookie-parser
+- debug
+- ejs
+- express
+- mongoose
+- morgan
+- serve-favicon
+- sha256
 
 
 ### Instalación de base de datos
@@ -49,8 +49,8 @@ $ npm run installDB
 
 Esta instrucción ejecutará el script de borrado e inicialización de la base de datos utilizando registros a cargar aquellos que se encuentren dentro de los ficheros con formato json de la carpeta installDB:
 
-⋅⋅* initAnuncios.json - para cargar anuncios
-⋅⋅* initUsuarios.json - para cargar usuarios
+- initAnuncios.json - para cargar anuncios
+- initUsuarios.json - para cargar usuarios
 
 Si la ejecución es correcta se podrá ver por consola una salida similar a lo siguiente: 
 
@@ -99,38 +99,40 @@ Si dicha URL responde favorablemente es que el servidor se encuentra operativo y
 
 ## **Operaciones**
 ### Gestión usuarios
-- Alta usuarios
+#### Alta usuarios
 Sólo los usuarios registrados pueden realizar peticiones a la API. Para ello se encuentra habilitado un acceso de alta de usuarios.
 
-Para poder registrar un usuario se ha de llamar mediante un método ```POST``` con la ruta '/apiv1/usuarios' y con formato Body x-www-form-urlencoded.
-
-Método: POST \
-Ruta: '/apiv1/usuarios'
-Formato: Body x-www-form-urlencoded
+Para poder registrar un usuario se ha de llamar de la siguiente forma:
+- Método: POST 
+- Ruta: '/apiv1/usuarios'
+- Formato: Body x-www-form-urlencoded
 
 Los parametros que se han de pasar son:
-nombre: <String>, email: <String>, clave: <String>
+- nombre: String
+- email: String
+- clave: String
 
 ### Gestión anuncios
 La gestión de anuncios sólo puede realizarse mediante usuarios registrados. Dichos usuarios tendran acceso a las siguientes peticiones:
 
-- Listado de anuncios
+#### Listado de anuncios
 La API devuelve una lista con todos los articulos que existen en la base de datos con filtros de búsqueda y paginación.
 
-Método: GET \
-Ruta: '/apiv1/anuncios' \
-Formato: Query
+Para poder listar se ha de llamar de la siguiente forma:
+- Método: GET 
+- Ruta: '/apiv1/anuncios' 
+- Formato: Query
 
 Parámetros de búsqueda posibles y opcionales:
-⋅⋅* nombre: String completo o que empiece por el dato buscado.
-⋅⋅* venta: Boolean ó "búsqueda" 
-⋅⋅* precio: Number ó Number- ó -Number ó Number-Number
-⋅⋅* tags: String 
+- nombre: String completo o que empiece por el dato buscado.
+- venta: Boolean ó "búsqueda" 
+- precio: Number ó Number- ó -Number ó Number-Number
+- tags: String 
 
 Paginación
-⋅⋅* sort: Ordenación ascendente o descendente de los campos de la presentación.
-⋅⋅* start: Posición desde donde empiezan a mostrarse los anuncios.
-⋅⋅* limit: Cantidad de anuncios que se devuelven.
+- sort: Ordenación ascendente o descendente de los campos de la presentación.
+- start: Posición desde donde empiezan a mostrarse los anuncios.
+- limit: Cantidad de anuncios que se devuelven.
 
 Un ejemplo de construcción sería:
 ```
@@ -157,14 +159,13 @@ Y como resultado
 }
 ```
 
-- Listado de tags
+#### Listado de tags
 La API devuelve una lista con todos los tags usados en los diferentes articulos.
 
-Para ello se accede de la siguiente forma
-
-Método: GET
-Ruta: '/apiv1/tags' 
-Formato: Query
+Para poder listar se ha de llamar de la siguiente forma:
+- Método: GET
+- Ruta: '/apiv1/tags' 
+- Formato: Query
 
 Obteniendo un resultado parecido al siguiente:
 ```
