@@ -8,16 +8,15 @@
 Servicio API de venta de artículos de segunda mano que muestra una lista de anuncios y permite tanto buscar como
 poner filtros por varios criterios. 
 
-Los usuarios no pueden subir anuncios. Sólo pueden consultar los anuncios precargados. Dichos usuarios tienen que estar registrarse con nombre, email y contraseña. El API solo devolverá
-anuncios a usuarios registrados.
+Los usuarios no pueden subir anuncios. Sólo pueden consultar los anuncios precargados. Dichos usuarios tienen que estar registrados con nombre, email y contraseña. El API solo devolverá anuncios a usuarios dados de alta.
 
 ## **Instalación**
 
 ### Prerrequisitos API
-Para poder trabajar con la API se necesitan tener el siguiente software instalado
-Node >= 4.0
-MongoDB
-Git
+Para poder trabajar con la API se necesitan tener el siguiente software instalado.
+⋅⋅* Node >= 4.0 
+⋅⋅* MongoDB 
+⋅⋅* Git 
 
 ### Instalación API
 Una vez se posean el entorno preparado se procederá a descargar el API desde gitHub e instalar los módulos de dependencias.
@@ -29,16 +28,29 @@ $ cd nodepop
 $ npm install
 ```
 
+Módulos que se instalaran:
+⋅⋅* basic-auth
+⋅⋅* body-parser
+⋅⋅* cookie-parser
+⋅⋅* debug
+⋅⋅* ejs
+⋅⋅* express
+⋅⋅* mongoose
+⋅⋅* morgan
+⋅⋅* serve-favicon
+⋅⋅* sha256
+
+
 ### Instalación de base de datos
 Una vez instaladas todas las dependencias se procederá a ejecutar el script de preparación de la base de datos y carga de valores iniciales.
 ```
 $ npm run installDB
 ```
 
-Esta instrucción ejecutará el script de borrado e inicialización de la base de datos utilizando como datos a cargar aquellos que se encuentren dentro de los ficheros con formato json de la carpeta installDB:
+Esta instrucción ejecutará el script de borrado e inicialización de la base de datos utilizando registros a cargar aquellos que se encuentren dentro de los ficheros con formato json de la carpeta installDB:
 
- initAnuncios.json - para cargar anuncios\
- initUsuarios.json - para cargar usuarios
+⋅⋅* initAnuncios.json - para cargar anuncios
+⋅⋅* initUsuarios.json - para cargar usuarios
 
 Si la ejecución es correcta se podrá ver por consola una salida similar a lo siguiente: 
 
@@ -92,6 +104,10 @@ Sólo los usuarios registrados pueden realizar peticiones a la API. Para ello se
 
 Para poder registrar un usuario se ha de llamar mediante un método ```POST``` con la ruta '/apiv1/usuarios' y con formato Body x-www-form-urlencoded.
 
+Método: POST \
+Ruta: '/apiv1/usuarios'
+Formato: Body x-www-form-urlencoded
+
 Los parametros que se han de pasar son:
 nombre: <String>, email: <String>, clave: <String>
 
@@ -103,21 +119,22 @@ La API devuelve una lista con todos los articulos que existen en la base de dato
 
 Método: GET \
 Ruta: '/apiv1/anuncios' \
+Formato: Query
 
 Parámetros de búsqueda posibles y opcionales:
-nombre: String completo o que empiece por el dato buscado.
-venta: Boolean ó "búsqueda" 
-precio: Number ó Number- ó -Number ó Number-Number
-tags: String 
+⋅⋅* nombre: String completo o que empiece por el dato buscado.
+⋅⋅* venta: Boolean ó "búsqueda" 
+⋅⋅* precio: Number ó Number- ó -Number ó Number-Number
+⋅⋅* tags: String 
 
 Paginación
-sort (orden de presentación)
-start (posición desde la que se entrega el primer anuncio)
-limit (cantidad de anuncios entregada)
+⋅⋅* sort: Ordenación ascendente o descendente de los campos de la presentación.
+⋅⋅* start: Posición desde donde empiezan a mostrarse los anuncios.
+⋅⋅* limit: Cantidad de anuncios que se devuelven.
 
 Un ejemplo de construcción sería:
 ```
-GET http://localhost:3000/apiv1/anuncios?tag=mobile&venta=false&nombre=bici&precio=50-&start=0&limit=2&sort=precio
+GET http://localhost:3000/apiv1/anuncios?&nombre=bici&precio=50-&venta=true&tag=motorstart=0&limit=2&sort=precio
 ```
 
 Y como resultado
@@ -126,14 +143,14 @@ Y como resultado
   "success": true,
   "result": [
     {
-      "_id": "591c9ed644d582051a3b694a",
-      "nombre": "Bicicleta",
-      "venta": true,
-      "precio": 230.15,
-      "foto": "/public/images/bici.jpg",
-      "tags": [
-        "lifestyle",
-        "motor"
+   _id": "591c9ed644d582051a3b694a",
+   nombre": "Bicicleta",
+   venta": true,
+   precio": 230.15,
+   foto": "/public/images/bici.jpg",
+   tags": [
+     lifestyle",
+     motor"
       ]
     }
   ]
@@ -143,8 +160,13 @@ Y como resultado
 - Listado de tags
 La API devuelve una lista con todos los tags usados en los diferentes articulos.
 
-Para ello se accede con un método ```GET``` y con la ruta '/apiv1/tags'
+Para ello se accede de la siguiente forma
 
+Método: GET
+Ruta: '/apiv1/tags' 
+Formato: Query
+
+Obteniendo un resultado parecido al siguiente:
 ```
 {
   "success": true,
