@@ -9,6 +9,7 @@ const mongoose = require('mongoose');             // Módulo de mongoose
 const Anuncio = mongoose.model('Anuncio');        // Creación de estructura Anuncios
 
 const basicAuth = require('../../lib/basicAuth'); // Módulo de autentificación
+const basicAuthAdmin = require('../../lib/basicAuthAdmin'); // Módulo de autentificación de Administradores
 
 const path = require('path');                     // Módulo de trabajo con rutas
 
@@ -120,7 +121,7 @@ router.get('/', basicAuth, (req, res, next) => {
 });
 
 // Se hace un metodo de actualizar anuncios
-router.put('/:id', (req, res, next) => {
+router.put('/:id', basicAuthAdmin, (req, res, next) => {
     let id = req.params.id;
 
     Anuncio.update({ _id: id }, req.body, (err, anuncio) => {
@@ -133,7 +134,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // Se hace un metodo de borrar anuncios
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', basicAuthAdmin, (req, res, next) => {
     let id = req.params.id;
 
     Anuncio.remove({ _id: id }, (err, anuncio) => {
