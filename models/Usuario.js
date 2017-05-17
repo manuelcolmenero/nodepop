@@ -15,7 +15,8 @@ const usuarioSchema = mongoose.Schema({
         index: true,
         unique: true
     },
-    clave: String
+    clave: String,
+    admin: Boolean
 });
 
 // Se crea el módelo en base al esquema anterior

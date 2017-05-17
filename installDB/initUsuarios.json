@@ -3,12 +3,14 @@
     {
       "nombre": "Son Goku",
       "email": "kamekameah@gmail.com",
-      "clave": "Bola4"
+      "clave": "Bola4",
+      "admin": false
     },
     {
       "nombre": "mcLasha",
       "email": "admin@lashainc.com",
-      "clave": "Boot5"
+      "clave": "Boot5",
+      "admin": true
     }
   ]
 }
