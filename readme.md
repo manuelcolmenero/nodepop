@@ -1,7 +1,7 @@
 # **Nodepop**
 --
-### **Práctica JS/Node.js/MongoDB**
-### **KeepCoding Startup Engineering Master V (2017)**
+### **Práctica JS/Node.js/MongoDB**###
+#### **KeepCoding Startup Engineering Master V (2017)**####
 
 ## **Sinopsis**
 
@@ -19,7 +19,7 @@ Para poder trabajar con la API se necesitan tener el siguiente software instalad
 - Git 
 
 ### Instalación API
-Una vez se posean el entorno preparado se procederá a descargar el API desde gitHub e instalar los módulos de dependencias.
+Una vez preparado el entorno se procederá a descargar el API desde gitHub e instalar los módulos de dependencias.
 
 Para ello habrá que ejecutar los siguientes comandos:
 ```
@@ -28,7 +28,7 @@ $ cd nodepop
 $ npm install
 ```
 
-Módulos que se instalaran:
+Módulos que se instalarán:
 - basic-auth
 - body-parser
 - cookie-parser
@@ -61,9 +61,9 @@ Si la ejecución es correcta se podrá ver por consola una salida similar a lo s
 Empieza el proceso de instalación
 Comienzo del proceso de anuncios
 Conectado a mongodb.
-Anuncios recuperados: 2
-Anuncios borrados: 2
-Anuncios cargados: 6
+Anuncios recuperados: 6
+Anuncios borrados: 6
+Anuncios cargados: 4
 Fin del proceso de anuncios
 Comienzo del proceso de usuarios
 Usuarios recuperados: 1
@@ -124,10 +124,10 @@ Para poder listar se ha de llamar de la siguiente forma:
 - Formato: Query
 
 Parámetros de búsqueda posibles y opcionales:
-- nombre: String completo o que empiece por el dato buscado.
-- venta: Boolean ó "búsqueda" 
-- precio: Number ó Number- ó -Number ó Number-Number
-- tags: String 
+- nombre: Texto (string) completo o que empiece por el dato buscado.
+- venta: true, false ó "búsqueda" (equivale a false)
+- precio: Números separados con '-'. Se pude informar un valor fijo, un desde o un hasta 
+- tags: Texto (string). Los diferentes valores iran separados con '-'
 
 Paginación
 - sort: Ordenación ascendente o descendente de los campos de la presentación.
@@ -136,7 +136,7 @@ Paginación
 
 Un ejemplo de construcción sería:
 ```
-GET http://localhost:3000/apiv1/anuncios?&nombre=bici&precio=50-&venta=true&tag=motorstart=0&limit=2&sort=precio
+GET http://localhost:3000/apiv1/anuncios?nombre=bici&precio=50-500&venta=true&tag=motor-lifestyle&start=0&limit=2&sort=precio
 ```
 
 Y como resultado
@@ -149,10 +149,10 @@ Y como resultado
    nombre": "Bicicleta",
    venta": true,
    precio": 230.15,
-   foto": "/public/images/bici.jpg",
+   foto": "/images/bici.jpg",
    tags": [
-     lifestyle",
-     motor"
+     "lifestyle",
+     "motor"
       ]
     }
   ]
