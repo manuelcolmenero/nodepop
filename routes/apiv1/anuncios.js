@@ -9,26 +9,10 @@ const mongoose = require('mongoose');             // Módulo de mongoose
 const Anuncio = mongoose.model('Anuncio');        // Creación de estructura Anuncios
 
 const basicAuth = require('../../lib/basicAuth'); // Módulo de autentificación
-const basicAuthAdmin = require('../../lib/basicAuthAdmin'); // Módulo de autentificación de Administradores
 
 const path = require('path');                     // Módulo de trabajo con rutas
 
 // ------------------ Area: Metodos
-// Se hace un metodo de crear anuncios
-router.post('/', (req, res, next) => {
-    // Se crea un modelo de anuncios en base a lo recibido por body
-    let anuncio = new Anuncio(req.body);
-
-    // Se guarda en la BBDD el modelo
-    anuncio.save((err, anuncioGuardado) => {
-        if (err) {
-            return next(err);
-        }
-        // Se devuelve el registro indicando que ha ido correctamente
-        res.json({ ok: true, anuncio: anuncioGuardado });
-    });
-
-});
 
 // Se hace un metodo para recuperar una lista de anuncios
 router.get('/', basicAuth, (req, res, next) => {
@@ -63,6 +47,15 @@ router.get('/', basicAuth, (req, res, next) => {
     if (precio) {
         // El rango viene dividido por un signo "-" así que se convierte en un array de 2 registros
         let rangoPrecio = precio.toString().split("-")
+
+        // Se controla que el valor recibido sea numerico.
+        if (isNaN(parseInt(rangoPrecio[0]))) {
+            rangoPrecio[0] = '';
+        }
+
+        if (isNaN(parseInt(rangoPrecio[1]))) {
+            rangoPrecio[1] = '';
+        }
 
         // Si los dos campos vienen informados
         if (rangoPrecio[0] && rangoPrecio[1]) {
@@ -112,37 +105,11 @@ router.get('/', basicAuth, (req, res, next) => {
             return next(err);
         }
         for (let indice = 0; indice < anuncios.length; indice++) {
-            anuncios[indice].foto = path.join('/public/images/', anuncios[indice].foto);
+            anuncios[indice].foto = path.join('/images/', anuncios[indice].foto);
         }
 
         // Si no hubo error se devuelve la lista recuperada
         res.json({ success: true, result: anuncios });
-    });
-});
-
-// Se hace un metodo de actualizar anuncios
-router.put('/:id', basicAuthAdmin, (req, res, next) => {
-    let id = req.params.id;
-
-    Anuncio.update({ _id: id }, req.body, (err, anuncio) => {
-        if (err) {
-            return next(err);
-        }
-        // Se devuelve el registro indicando que ha ido correctamente
-        res.json({ ok: true, anuncio: anuncio });
-    });
-});
-
-// Se hace un metodo de borrar anuncios
-router.delete('/:id', basicAuthAdmin, (req, res, next) => {
-    let id = req.params.id;
-
-    Anuncio.remove({ _id: id }, (err, anuncio) => {
-        if (err) {
-            return next(err);
-        }
-        // Se devuelve el registro indicando que ha ido correctamente
-        res.json({ ok: true, anuncio: anuncio });
     });
 });
 

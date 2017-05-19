@@ -25,7 +25,7 @@ const anuncioSchema = mongoose.Schema({
     }
 });
 
-// Se crea un método estático
+// Se crea un método estático para recuperar el listado
 anuncioSchema.statics.list = function (filter, limit, skip, fields, sort, callback) {
     const query = Anuncio.find(filter);
 

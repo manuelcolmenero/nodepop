@@ -10,8 +10,6 @@ const Anuncio = mongoose.model('Anuncio');        // Creación de estructura Anu
 
 const basicAuth = require('../../lib/basicAuth'); // Módulo de autentificación
 
-const path = require('path');                     // Módulo de trabajo con rutas
-
 // ------------------ Area: Funciones
 
 // Función para dejar un único registro de cada valor que haya en un array

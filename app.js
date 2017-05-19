@@ -33,22 +33,22 @@ app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 app.use('/', require('./routes/index'));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  if (isAPI(req)){
-    res.json({ok:false, error: err.message});
+  if (isAPI(req)) {
+    res.json({ ok: false, error: err.message });
     return;
   }
   res.render('error');
