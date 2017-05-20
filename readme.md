@@ -1,12 +1,11 @@
 # **Nodepop**
---
-### **Práctica JS/Node.js/MongoDB**###
-#### **KeepCoding Startup Engineering Master V (2017)**####
+
+### **Práctica JS/Node.js/MongoDB**
+#### **KeepCoding Startup Engineering Master V (2017)**
 
 ## **Sinopsis**
 
-Servicio API de venta de artículos de segunda mano que muestra una lista de anuncios y permite tanto buscar como
-poner filtros por varios criterios. 
+Servicio API de venta de artículos de segunda mano que muestra una lista de anuncios y permite tanto buscar como poner filtros por varios criterios. 
 
 Los usuarios no pueden subir anuncios. Sólo pueden consultar los anuncios precargados. Dichos usuarios tienen que estar registrados con nombre, email y contraseña. El API solo devolverá anuncios a usuarios dados de alta.
 
@@ -47,7 +46,7 @@ Una vez instaladas todas las dependencias se procederá a ejecutar el script de 
 $ npm run installDB
 ```
 
-Esta instrucción ejecutará el script de borrado e inicialización de la base de datos utilizando registros a cargar aquellos que se encuentren dentro de los ficheros con formato json de la carpeta installDB:
+Esta instrucción ejecutará el script de borrado e inicialización de la base de datos utilizando registros a cargar aquellos que se encuentren dentro de los ficheros con formato JSON de la carpeta installDB:
 
 - initAnuncios.json - para cargar anuncios
 - initUsuarios.json - para cargar usuarios
@@ -112,11 +111,13 @@ Los parametros que se han de pasar son:
 - email: String
 - clave: String
 
+No se permite que existan varios usuarios con mismo nombre o email y la clave siempre se guardará encriptada para preservar la privacidad.
+
 ### Gestión anuncios
-La gestión de anuncios sólo puede realizarse mediante usuarios registrados. Dichos usuarios tendran acceso a las siguientes peticiones:
+La gestión de anuncios sólo puede realizarse mediante usuarios registrados. Dichos usuarios tendrán acceso a las siguientes peticiones:
 
 #### Listado de anuncios
-La API devuelve una lista con todos los articulos que existen en la base de datos con filtros de búsqueda y paginación.
+La API devuelve una lista con todos los artículos que existen en la base de datos con filtros de búsqueda y paginación.
 
 Para poder listar se ha de llamar de la siguiente forma:
 - Método: GET 
@@ -127,7 +128,7 @@ Parámetros de búsqueda posibles y opcionales:
 - nombre: Texto (string) completo o que empiece por el dato buscado.
 - venta: true, false ó "búsqueda" (equivale a false)
 - precio: Números separados con '-'. Se pude informar un valor fijo, un desde o un hasta 
-- tags: Texto (string). Los diferentes valores iran separados con '-'
+- tags: Texto (string). Los diferentes valores estaran separados con '-'
 
 Paginación
 - sort: Ordenación ascendente o descendente de los campos de la presentación.
@@ -160,7 +161,7 @@ Y como resultado
 ```
 
 #### Listado de tags
-La API devuelve una lista con todos los tags usados en los diferentes articulos.
+La API devuelve una lista con todos los tags usados en los diferentes artículos.
 
 Para poder listar se ha de llamar de la siguiente forma:
 - Método: GET
@@ -181,3 +182,9 @@ En caso de querer hacer un seguimiento con trazas de la ejecución del API se ha
 ```
 npm run dev
 ```
+
+Para ejecutar este modo se necesitará tener instalado el módulo de nodemon. En caso de no tenerlo se ha de ejecutar la sentencia siguiente:
+
+```
+npm install nodemon -g
+``
