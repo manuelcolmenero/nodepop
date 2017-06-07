@@ -3,25 +3,26 @@
 
 - - -
 
-# **Práctica del curso de DevOps**
+# **Práctica del curso de DevOps**
 ## **Sinopsis**
-La práctica consiste en desplegar en un servidor su desarrollo para la práctica del curso de Programación Backend con Node (Nodepop).
+La práctica consiste en desplegar en un servidor su desarrollo para la práctica del curso de Programación Backend con Node (Nodepop).
 
-La arquitectura utilizada para la puesta en producción es la siguiente:
-• Se utiliza node como servidor de aplicación utilizando PM2 como gestor de procesos node para que siempre esté en ejecución. La aplicación node deberá reiniciarse automáticamente al arrancar el servidor.
+La arquitectura utilizada para la puesta en producción es la siguiente:
 
-• Se utiliza nginx como proxy inverso que se encargue de recibir las peticiones HTTP y derivárselas a node.
+• Se utiliza node como servidor de aplicación utilizando PM2 como gestor de procesos node para que siempre esté en ejecución. La aplicación node deberá reiniciarse automáticamente al arrancar el servidor.
 
-• Los archivos estáticos de la aplicación (imágenes, css, etc.) se sirven desde el servidor por nginx. Para poder diferenciar se incluye una cabecera HTTP cuando se sirvan estáticos cuyo valor es: X-Owner: manuelcolmenero. Dado que la aplicación posee estáticos se facilita la ruta para su visualización.
+• Se utiliza nginx como proxy inverso que se encargue de recibir las peticiones HTTP y derivárselas a node.
 
-• Si se accede al servidor web indicando la dirección IP del servidor en lugar del nombre de dominio, se deberá mostrar el contenido de alguna plantilla de startbootstrap.com. 
+• Los archivos estáticos de la aplicación (imágenes, css, etc.) se sirven desde el servidor por nginx. Para poder diferenciar se incluye una cabecera HTTP cuando se sirvan estáticos cuyo valor es: X-Owner: manuelcolmenero. Dado que la aplicación posee estáticos se facilita la ruta para su visualización.
+
+• Si se accede al servidor web indicando la dirección IP del servidor en lugar del nombre de dominio, se deberá mostrar el contenido de alguna plantilla de startbootstrap.com. 
 
 ## **Datos de verificación**
 La url donde se ha desplegado el servidor de nodepop es: [nodepop.manuelcolmenero.es](http://nodepop.manuelcolmenero.es)
 
 La url donde se ha desplegado el servidor web es: [www.manuelcolmenero.es](http://www.manuelcolmenero.es). La IP [52.5.154.106](http://52.5.154.106) se ha redirigido al dominio.
 
-La url donde se puede verificar la cabecera HTTP para estáticos es: [nodepop.manuelcolmenero.es/images/falcon.jpg](http://nodepop.manuelcolmenero.es/images/falcon.jpg) 
+La url donde se puede verificar la cabecera HTTP para estáticos es: [nodepop.manuelcolmenero.es/images/falcon.jpg](http://nodepop.manuelcolmenero.es/images/falcon.jpg) 
 
 ## **Datos añadidos**
 Se ha incorporado SSL al dominio web.
