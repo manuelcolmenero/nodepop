@@ -25,7 +25,7 @@ La url donde se ha desplegado el servidor web es: [www.manuelcolmenero.es](http:
 La url donde se puede verificar la cabecera HTTP para estáticos es: [nodepop.manuelcolmenero.es/images/falcon.jpg](http://nodepop.manuelcolmenero.es/images/falcon.jpg) 
 
 ## **Datos añadidos**
-Se ha incorporado SSL al dominio web.
+Se ha incorporado SSL al dominio web y a la aplicación nodepop con redirección automatica a la url segura.
 
 - - -
 
