@@ -18,7 +18,7 @@ La arquitectura utilizada para la puesta en producción es la siguiente:
 • Si se accede al servidor web indicando la dirección IP del servidor en lugar del nombre de dominio, se deberá mostrar el contenido de alguna plantilla de startbootstrap.com. 
 
 ## **Datos de verificación**
-La url donde se ha desplegado el servidor de nodepop es: [nodepop.manuelcolmenero.es](http://nodepop.manuelcolmenero.es)
+La url donde se ha desplegado el servidor de nodepop es: [nodepop.manuelcolmenero.es](http://nodepop.manuelcolmenero.es). Si se desea comprobar la resolción de peticiones se puede ejecutar la URL [http://nodepop.manuelcolmenero.es/apiv1/anuncios] (http://nodepop.manuelcolmenero.es/apiv1/anuncios) en POSTMAN utilizando en la BasicAuth el usuario "Son Goku" y contraseña "Bola4".
 
 La url donde se ha desplegado el servidor web es: [www.manuelcolmenero.es](http://www.manuelcolmenero.es). La IP [52.5.154.106](http://52.5.154.106) se ha redirigido al dominio.
 
